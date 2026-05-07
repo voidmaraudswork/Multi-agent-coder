@@ -46,4 +46,6 @@ with gr.Blocks(theme=gr.themes.Soft()) as demo:
     )
 
 # share=True creates a public link you can open on any phone
-demo.launch(share=True)
+# Change this for Render deployment
+if __name__ == "__main__":
+    demo.queue().launch(server_name="0.0.0.0", server_port=10000)
