@@ -1,17 +1,17 @@
 import time
 
 def start_debate(code, gemini_func, deepseek_func):
-    print("\n⚖️ STARTING 20-SECOND AI DEBATE...")
-    start_time = time.time()
-    current_version = code
+    print("⚖️ STARTING AI DEBATE (2 ROUNDS)...")
+    curr = code
     
-    # Loop for roughly 20 seconds
-    while time.time() - start_time < 20:
-        print("💬 DeepSeek is critiquing Gemini...")
-        current_version = deepseek_func(f"Find one flaw in this and fix it: {current_version}")
+    # We do exactly 2 rounds instead of a timed loop
+    for i in range(2):
+        print(f"💬 Round {i+1}: DeepSeek critiquing...")
+        curr = deepseek_func(f"Find one logical flaw and fix it: {curr}")
+        time.sleep(10)  # 👈 10 seconds is the 'magic number' for Free Tier safety
         
-        print("💬 Gemini is defending and improving...")
-        current_version = gemini_func(f"Make this even better based on feedback: {current_version}")
+        print(f"💬 Round {i+1}: Gemini improving...")
+        curr = gemini_func(f"Make this better based on feedback: {curr}")
+        time.sleep(10)  # 👈 10 seconds break
         
-    return current_version
-  
+    return curr
